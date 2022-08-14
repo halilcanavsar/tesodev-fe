@@ -1,0 +1,25 @@
+.bottom-slide-container {
+  margin-top: 8em;
+  display: flex;
+  flex-direction: column;
+  .top-news {
+    margin-left: 20px;
+  }
+  .items {
+    display: flex;
+    flex-direction: row;
+    .slide-item {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+  }
+  button {
+    margin-bottom: 5em;
+    margin-top: 5em;
+    border: none;
+    background: #ffffff;
+  }
+  button:hover {
+    cursor: pointer;
+  }
+}

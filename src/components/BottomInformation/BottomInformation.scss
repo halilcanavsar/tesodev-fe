@@ -1,0 +1,15 @@
+.bottom-information {
+  display: flex;
+  flex-direction: row;
+  background: rgba(41, 78, 152, 0.72);
+  width: 100%;
+  margin-top: 30px;
+  img {
+    margin: 30px;
+  }
+  .info {
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+  }
+}
