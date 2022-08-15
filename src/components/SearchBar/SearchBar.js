@@ -1,5 +1,4 @@
-import { useState, useContext } from 'react';
-import userContext from '../../contexts/userContext';
+import { useState } from 'react';
 import './SearchBar.scss';
 import Data from '../../data.json';
 import { NavLink } from 'react-router-dom';
@@ -7,24 +6,11 @@ import { NavLink } from 'react-router-dom';
 const SearchBar = () => {
   const [text, setText] = useState('');
 
-  const { searchUsers } = useContext(userContext);
-
   const data = Data.data.filter((el) => {
     return Object.keys(el).some((key) => {
       return el[key].toString().toLowerCase().includes(text.toLowerCase());
     });
   });
-
-  // const showMore = () => {
-  //   setSearchFilter(searchFilter);
-  //   console.log(searchUsers);
-  // };
-
-  // const onChange = (e) => {
-  //   console.log(data, 'data');
-  //   e.preventDefault();
-  //   searchUsers(text);
-  // };
 
   return (
     <div className="search-bar">
@@ -36,7 +22,12 @@ const SearchBar = () => {
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
-        <NavLink to="/listpage">
+        <NavLink
+          to={{
+            pathname: '/listpage',
+          }}
+          state={{ text: text }}
+        >
           <button type="submit" className="search-bar-btn">
             Search
           </button>
@@ -63,7 +54,12 @@ const SearchBar = () => {
               </div>
             );
           })}
-          <NavLink to="/listpage">
+          <NavLink
+            to={{
+              pathname: '/listpage',
+            }}
+            state={{ text: text }}
+          >
             <button className="show-more-btn">Show more..</button>
           </NavLink>
         </div>

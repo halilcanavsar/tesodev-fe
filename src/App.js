@@ -1,26 +1,20 @@
 import './App.css';
 import LandingPage from './pages/LandingPage/LandingPage';
 import ListPage from './pages/ListPage/ListPage';
-import UserState from './contexts/UserState';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from 'react-router-dom';
+import AddLinkPage from './pages/AddLinkPage/AddLinkPage';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <UserState>
-      <Router>
-        <div className="App">
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/listpage" element={<ListPage />} />
-          </Routes>
-        </div>
-      </Router>
-    </UserState>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/listpage" element={<ListPage />} />
+          <Route path="/add-link" element={<AddLinkPage />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

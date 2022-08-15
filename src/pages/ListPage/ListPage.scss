@@ -1,0 +1,27 @@
+.list-page {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  .logo {
+    width: 149px;
+    height: 63px;
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+  .landing-search-bar {
+    margin-top: 2em;
+  }
+  .landing-results {
+    border: none;
+  }
+  .search-bar-result-name-date {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .search-bar-result-text {
+    width: 90%;
+  }
+}
