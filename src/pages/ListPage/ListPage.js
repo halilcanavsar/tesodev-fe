@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Data from '../../data.json';
 import AddNewRecord from '../../components/Buttons/NewRecord/NewRecord';
+import Pagination from '../../components/Pagination/Pagination';
 
 const normalizeData = () => {
   return Data.data.map((el) => {
@@ -22,10 +23,13 @@ const ListPage = () => {
   const location = useLocation();
   const { text } = location.state;
   const [searchText, setSearchText] = useState(text);
-
   const [data, setData] = useState(normalizeData(Data.data));
   const [filteredData, setFilteredData] = useState(normalizeData(Data.data));
   const [sortState, setSortState] = useState('nameAscending');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(5);
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
 
   useEffect(() => {
     setFilteredData(
@@ -92,10 +96,6 @@ const ListPage = () => {
     }
   };
 
-  useEffect(() => {
-    sortBy(sortState);
-  }, [sortState]);
-
   return (
     <div className="list-page">
       <img
@@ -113,7 +113,6 @@ const ListPage = () => {
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
-              sortBy(sortState);
             }}
           />
 
@@ -124,47 +123,54 @@ const ListPage = () => {
 
         <div className="search-bar-results landing-results">
           <div className="se">
-            {filteredData.slice(0, 5).map((el, index) => {
-              return (
-                <div className="search-bar-result" key={index}>
-                  <div className="search-bar-result-icon">
-                    <img
-                      src={require('../../assets/images/location.png')}
-                      alt="avatar"
-                    />
-                  </div>
-                  <div className="search-bar-result-text">
-                    <div className="search-bar-result-name-date">
-                      <p className="search-bar-result-text-name">
-                        {el['Name Surname']}
-                      </p>
-                      <p className="search-bar-result-text-date">{el.Date}</p>
+            {filteredData
+              .slice(indexOfFirstPost, indexOfLastPost)
+              .map((el, index) => {
+                return (
+                  <div className="search-bar-result" key={index}>
+                    <div className="search-bar-result-icon">
+                      <img
+                        src={require('../../assets/images/location.png')}
+                        alt="avatar"
+                      />
                     </div>
+                    <div className="search-bar-result-text">
+                      <div className="search-bar-result-name-date">
+                        <p className="search-bar-result-text-name">
+                          {el['Name Surname']}
+                        </p>
+                        <p className="search-bar-result-text-date">{el.Date}</p>
+                      </div>
 
-                    <p className="search-bar-result-text-country">
-                      {el.Country}, {el.City}
-                    </p>
+                      <p className="search-bar-result-text-country">
+                        {el.Country}, {el.City}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
           </div>
         </div>
+
+        <div className="pagination-bar">
+          <Pagination
+            postsPerPage={postsPerPage}
+            totalPosts={filteredData.length}
+            paginate={(pageNumber) => setCurrentPage(pageNumber)}
+          />
+        </div>
       </div>
+
       <div className="list-new-record">
         <div>
           <AddNewRecord />
         </div>
         <div>
-          {/* <button onClick={nameAscending}>Name Ascending</button>
-          <button onClick={nameDescending}>Name Descending</button>
-          <button onClick={yearAscending}>Year Ascending</button>
-          <button onClick={yearDescending}>Year Descending</button> */}
-
-          {/* create a select tag with ascending and descending functions*/}
           <select
+            className="sort-select"
             onChange={(e) => {
               setSortState(e.target.value);
+              sortBy(e.target.value);
             }}
           >
             <option value="nameAscending">Name Ascending</option>
@@ -172,24 +178,6 @@ const ListPage = () => {
             <option value="yearAscending">Year Ascending</option>
             <option value="yearDescending">Year Descending</option>
           </select>
-          {/* <select
-            onChange={(e) => {
-              if (e.target.value === 'nameAscending') {
-                nameAscending();
-              } else if (e.target.value === 'nameDescending') {
-                nameDescending();
-              } else if (e.target.value === 'yearAscending') {
-                yearAscending();
-              } else if (e.target.value === 'yearDescending') {
-                yearDescending();
-              }
-            }}
-          >
-            <option value="nameAscending">Name Ascending</option>
-            <option value="nameDescending">Name Descending</option>
-            <option value="yearAscending">Year Ascending</option>
-            <option value="yearDescending">Year Descending</option>
-          </select> */}
         </div>
       </div>
     </div>

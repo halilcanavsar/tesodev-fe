@@ -24,4 +24,14 @@
   .search-bar-result-text {
     width: 90%;
   }
+  .sort-select {
+    position: absolute;
+    width: 150px;
+    height: 30px;
+    background: #f3f2f2;
+    border: 1px solid #414141;
+    border-radius: 8px;
+    margin-left: -33em;
+    padding-left: 5px;
+  }
 }

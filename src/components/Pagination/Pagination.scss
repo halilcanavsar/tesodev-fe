@@ -1,0 +1,25 @@
+.pagination {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  margin-top: 3em;
+  margin-left: -40px;
+  .pagination-link {
+    width: 24px;
+    height: 24px;
+    margin: 0px 6px;
+    padding: 2px;
+    background: #ffffff;
+    border: 1px solid #484848;
+    border-radius: 4px;
+  }
+  .page-link {
+    width: 70px;
+    // height: 24px;
+    margin: 0px 7px;
+    padding: 4px;
+    background: #ffffff;
+    border: 1px solid #484848;
+    border-radius: 4px;
+  }
+}

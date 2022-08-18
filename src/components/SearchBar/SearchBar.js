@@ -1,16 +1,36 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './SearchBar.scss';
 import Data from '../../data.json';
 import { NavLink } from 'react-router-dom';
 
+const normalizeData = () => {
+  return Data.data.map((el) => {
+    let object = {};
+    for (let j = 0; j < el.length; j++) {
+      object = {
+        ...object,
+        [Data.cols[j]]: el[j],
+      };
+    }
+
+    return object;
+  });
+};
+
 const SearchBar = () => {
   const [text, setText] = useState('');
+  const [data, setData] = useState(normalizeData(Data.data));
+  const [filteredData, setFilteredData] = useState(normalizeData(Data.data));
 
-  const data = Data.data.filter((el) => {
-    return Object.keys(el).some((key) => {
-      return el[key].toString().toLowerCase().includes(text.toLowerCase());
-    });
-  });
+  useEffect(() => {
+    setFilteredData(
+      data.filter((el) => {
+        return Object.keys(el).some((key) => {
+          return el[key].toString().toLowerCase().includes(text.toLowerCase());
+        });
+      })
+    );
+  }, [text]);
 
   return (
     <div className="search-bar">
@@ -34,9 +54,9 @@ const SearchBar = () => {
         </NavLink>
       </form>
 
-      {text.length > 2 && data.length > 0 ? (
+      {text.length > 2 && filteredData.length > 0 ? (
         <div className="search-bar-results">
-          {data.slice(0, 3).map((el) => {
+          {filteredData.slice(0, 3).map((el) => {
             return (
               <div className="search-bar-result" key={el}>
                 <div className="search-bar-result-icon">
@@ -46,9 +66,11 @@ const SearchBar = () => {
                   />
                 </div>
                 <div className="search-bar-result-text">
-                  <p className="search-bar-result-text-name">{el[0]}</p>
+                  <p className="search-bar-result-text-name">
+                    {el['Name Surname']}
+                  </p>
                   <p className="search-bar-result-text-country">
-                    {el[4]}, {el[5]}
+                    {el.Country}, {el.City}
                   </p>
                 </div>
               </div>
