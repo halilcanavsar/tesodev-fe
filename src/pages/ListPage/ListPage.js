@@ -96,6 +96,8 @@ const ListPage = () => {
     }
   };
 
+  //if input is empty make button unclickable
+
   return (
     <div className="list-page">
       <img
@@ -116,9 +118,26 @@ const ListPage = () => {
             }}
           />
 
-          <button type="submit" className="search-bar-btn">
+          <button type="submit" className="search-bar-btn" disabled>
             Search
           </button>
+          <div>
+            <select
+              className="sort-select"
+              onChange={(e) => {
+                setSortState(e.target.value);
+                sortBy(e.target.value);
+              }}
+            >
+              <option value="" selected disabled hidden>
+                Sort by
+              </option>
+              <option value="nameAscending">Name Ascending</option>
+              <option value="nameDescending">Name Descending</option>
+              <option value="yearAscending">Year Ascending</option>
+              <option value="yearDescending">Year Descending</option>
+            </select>
+          </div>
         </form>
 
         <div className="search-bar-results landing-results">
@@ -163,21 +182,7 @@ const ListPage = () => {
 
       <div className="list-new-record">
         <div>
-          <AddNewRecord />
-        </div>
-        <div>
-          <select
-            className="sort-select"
-            onChange={(e) => {
-              setSortState(e.target.value);
-              sortBy(e.target.value);
-            }}
-          >
-            <option value="nameAscending">Name Ascending</option>
-            <option value="nameDescending">Name Descending</option>
-            <option value="yearAscending">Year Ascending</option>
-            <option value="yearDescending">Year Descending</option>
-          </select>
+          <AddNewRecord className="add-new-record-button-listpage" />
         </div>
       </div>
     </div>

@@ -92,3 +92,33 @@
     }
   }
 }
+
+@media screen and (max-width: 420px) {
+  .search-bar {
+    // max-width: 390px;
+    .search-bar-input {
+      width: 17em;
+      height: 3em;
+      align-self: center;
+      padding-left: 20px;
+      margin-right: 5px;
+
+      background: #ffffff;
+      border: 2px solid #204080;
+      border-radius: 8px;
+    }
+
+    .search-bar-btn {
+      width: 4em;
+      height: 2.5em;
+    }
+
+    .search-bar-results {
+      width: 20em;
+
+      .show-more-btn {
+        margin-left: 100px;
+      }
+    }
+  }
+}

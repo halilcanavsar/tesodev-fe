@@ -25,13 +25,49 @@
     width: 90%;
   }
   .sort-select {
-    position: absolute;
-    width: 150px;
+    float: right;
+    width: 120px;
     height: 30px;
+    margin-top: 10px;
+
     background: #f3f2f2;
     border: 1px solid #414141;
     border-radius: 8px;
-    margin-left: -33em;
+
     padding-left: 5px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .list-page {
+    flex-direction: column;
+    // max-width: 420px;
+    overflow: hidden;
+    .logo {
+      width: 300px;
+      height: 150px;
+    }
+    .landing-search-bar {
+      margin-top: 6em;
+      margin-left: 10px;
+    }
+    .landing-results {
+      border: none;
+    }
+
+    .add-new-record {
+      position: absolute;
+      top: 150px;
+      margin-left: 60px;
+    }
+
+    // .pagination {
+    //   max-width: 420px;
+    //   width: 320px !important;
+    // }
+
+    .sort-select {
+      margin-right: 20px;
+    }
   }
 }

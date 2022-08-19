@@ -115,3 +115,27 @@
     padding: 6px;
   }
 }
+
+@media screen and (max-width: 420px) {
+  .add-link-page {
+    .logo {
+      margin-top: 50px;
+      margin-bottom: 20px;
+      .form-return {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+      }
+    }
+
+    input {
+      width: 300px;
+    }
+
+    .error-message-text {
+      width: 190px;
+      position: absolute;
+      bottom: 0px;
+    }
+  }
+}

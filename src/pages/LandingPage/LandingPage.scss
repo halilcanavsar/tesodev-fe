@@ -7,3 +7,11 @@
   justify-content: center;
   align-items: center;
 }
+
+@media screen and (max-width: 420px) {
+  .landing-page {
+    max-width: 390px;
+    width: 390px;
+    overflow: hidden;
+  }
+}

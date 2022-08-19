@@ -18,3 +18,17 @@
     height: 12em;
   }
 }
+
+@media screen and (max-width: 420px) {
+  .bottom-information {
+    flex-direction: column;
+
+    .info {
+      margin: 10px;
+    }
+    .map {
+      margin: 10px;
+      width: 360px;
+    }
+  }
+}
