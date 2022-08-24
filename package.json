@@ -42,7 +42,8 @@
     ]
   },
   "devDependencies": {
-    "cypress": "^10.6.0"
+    "cypress": "^10.6.0",
+    "eslint-plugin-cypress": "^2.12.1"
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
@@ -55,6 +56,5 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/qwertykeyboard11/tesodev-fe/issues"
-  },
-  "homepage": "https://github.com/qwertykeyboard11/tesodev-fe#readme"
+  }
 }

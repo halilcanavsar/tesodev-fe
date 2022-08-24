@@ -23,11 +23,10 @@ const ListPage = () => {
   const location = useLocation();
   const { text } = location.state;
   const [searchText, setSearchText] = useState(text);
-  const [data, setData] = useState(normalizeData(Data.data));
+  const [data] = useState(normalizeData(Data.data));
   const [filteredData, setFilteredData] = useState(normalizeData(Data.data));
-  const [sortState, setSortState] = useState('nameAscending');
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(5);
+  const [postsPerPage] = useState(5);
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
 
@@ -96,8 +95,6 @@ const ListPage = () => {
     }
   };
 
-  //if input is empty make button unclickable
-
   return (
     <div className="list-page">
       <img
@@ -125,7 +122,6 @@ const ListPage = () => {
             <select
               className="sort-select"
               onChange={(e) => {
-                setSortState(e.target.value);
                 sortBy(e.target.value);
               }}
             >
